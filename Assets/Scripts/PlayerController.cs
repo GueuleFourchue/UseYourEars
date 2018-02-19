@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour {
 
     private void Update()
     {
+		/*
         if (Input.GetAxis("Mouse X") != 0)
         {
             yaw = hSpeed * Input.GetAxis("Mouse X");
@@ -26,6 +27,9 @@ public class PlayerController : MonoBehaviour {
             pitch = vSpeed * Input.GetAxis("Mouse Y");
             CamRotation();
         }
+        */
+
+		cam.transform.Rotate (-Input.gyro.rotationRateUnbiased.x, -Input.gyro.rotationRateUnbiased.y, 0);
     }
 
     void CamRotation()
