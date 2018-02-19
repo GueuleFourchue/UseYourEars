@@ -542,6 +542,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1030128368}
   - component: {fileID: 1030128369}
+  - component: {fileID: 1030128370}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -576,6 +577,21 @@ MonoBehaviour:
   cam: {fileID: 1363875940}
   walkForwardSpeed: 5
   walkBackSpeed: 2
+--- !u!114 &1030128370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1030128367}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e46e3015502d982469a1e1f939f97863, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkForwardSpeed: 0
+  walkBackSpeed: 0
+  speedH: 2
+  speedV: 2
 --- !u!1 &1363875937
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,7 +604,6 @@ GameObject:
   - component: {fileID: 1363875939}
   - component: {fileID: 1363875938}
   - component: {fileID: 1363875942}
-  - component: {fileID: 1363875943}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -671,17 +686,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1030128367}
---- !u!114 &1363875943
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1363875937}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e46e3015502d982469a1e1f939f97863, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1395856721
 GameObject:
   m_ObjectHideFlags: 0

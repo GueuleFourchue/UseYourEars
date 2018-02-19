@@ -9,6 +9,7 @@ public class GyroCamera : MonoBehaviour
 	void Start()
 	{
 		this.transform.parent = player.transform;
+		transform.eulerAngles = Vector3.zero;
 		Input.gyro.enabled = true;
 	}
 

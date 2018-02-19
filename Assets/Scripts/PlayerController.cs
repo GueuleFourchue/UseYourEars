@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour {
 	{
 		screenWidth = Screen.width;
 		screenHeight = Screen.height;
+
+		transform.eulerAngles = Vector3.zero;
 	}
 
     private void Update()
@@ -34,11 +36,11 @@ public class PlayerController : MonoBehaviour {
 	{
 		if (tapXPosition > screenWidth / 2) 
 		{
-			transform.Translate (transform.forward * Time.deltaTime * walkForwardSpeed);
+			transform.position += transform.forward * Time.deltaTime * walkForwardSpeed;
 		}
 		else
 		{
-			transform.Translate (-transform.forward * Time.deltaTime * walkBackSpeed);
+			transform.position -= transform.forward * Time.deltaTime * walkBackSpeed;
 		}
 	}
 }
