@@ -4,20 +4,18 @@ using UnityEngine;
 
 public class GyroCamera : MonoBehaviour
 {
-	GameObject camParent;
+	public GameObject player;
 
 	void Start()
 	{
-		camParent = new GameObject ("camParent");
-		camParent.transform.position = this.transform.position;
-		this.transform.parent = camParent.transform;
+		this.transform.parent = player.transform;
 		Input.gyro.enabled = true;
 	}
 
 	void Update()
 	{
-		camParent.transform.Rotate (0, -Input.gyro.rotationRateUnbiased.y, 0);
-		this.transform.Rotate (-Input.gyro.rotationRateUnbiased.x, 0, 0);
+		player.transform.Rotate (-Input.gyro.rotationRateUnbiased.x, 0, 0);
+		this.transform.Rotate (0, -Input.gyro.rotationRateUnbiased.y, 0);
 	}
 
 }

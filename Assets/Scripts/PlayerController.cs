@@ -4,37 +4,41 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-    [Header("Mouse")]
-    public float hDeadZone;
-    public float vDeadZone;
-    public float hSpeed;
-    public float vSpeed;
-    public Camera cam;
+	public Camera cam;
+
+	[Header("Walk")]
+	public float walkForwardSpeed;
+	public float walkBackSpeed;
 
     float yaw;
     float pitch;
 
+	float screenWidth;
+	float screenHeight;
+
+	void Start()
+	{
+		screenWidth = Screen.width;
+		screenHeight = Screen.height;
+	}
+
     private void Update()
     {
-		/*
-        if (Input.GetAxis("Mouse X") != 0)
-        {
-            yaw = hSpeed * Input.GetAxis("Mouse X");
-            CamRotation();
-        }
-        if (Input.GetAxis("Mouse Y") != 0)
-        {
-            pitch = vSpeed * Input.GetAxis("Mouse Y");
-            CamRotation();
-        }
-        */
-
-		cam.transform.Rotate (-Input.gyro.rotationRateUnbiased.x, -Input.gyro.rotationRateUnbiased.y, 0);
+		if (Input.GetMouseButton(0)) 
+		{
+			TapMovement (Input.mousePosition.x);
+		}
     }
-
-    void CamRotation()
-    {
-        cam.transform.Rotate(new Vector3(pitch, yaw, 0.0f));
-    }
-   
+		
+	void TapMovement (float tapXPosition)
+	{
+		if (tapXPosition > screenWidth / 2) 
+		{
+			transform.Translate (transform.forward * Time.deltaTime * walkForwardSpeed);
+		}
+		else
+		{
+			transform.Translate (-transform.forward * Time.deltaTime * walkBackSpeed);
+		}
+	}
 }
