@@ -30,6 +30,11 @@ public class PlayerController : MonoBehaviour {
 		{
 			TapMovement (Input.mousePosition.x);
 		}
+
+		if (Input.touchCount > 1) 
+		{
+			cam.GetComponent<GyroCamera> ().ResetOrientation ();
+		}
     }
 		
 	void TapMovement (float tapXPosition)

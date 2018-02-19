@@ -1,23 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 
 public class GyroCamera : MonoBehaviour
 {
 	public GameObject player;
 
+	Quaternion initialRotation;
+	Quaternion gyroInitialRotation;
+
 	void Start()
 	{
-		this.transform.parent = player.transform;
+		Screen.orientation = ScreenOrientation.Landscape;
+		if (this.transform.parent == null)
+			this.transform.parent = player.transform;
+
 		transform.eulerAngles = Vector3.zero;
 		Input.gyro.enabled = true;
 	}
 
 	void Update()
 	{
-		player.transform.Rotate (-Input.gyro.rotationRateUnbiased.x, 0, 0);
-		this.transform.Rotate (0, -Input.gyro.rotationRateUnbiased.y, 0);
+		this.transform.Rotate (-Input.gyro.rotationRateUnbiased.x, 0, 0);
+		player.transform.Rotate (0, -Input.gyro.rotationRateUnbiased.y, 0);
 	}
 
+	public void ResetOrientation()
+	{
+		transform.eulerAngles = Vector3.zero;
+	}
 }
