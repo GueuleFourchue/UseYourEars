@@ -5,9 +5,7 @@ using UnityEngine;
 public class GyroCamera : MonoBehaviour
 {
 	public GameObject player;
-
-	Quaternion initialRotation;
-	Quaternion gyroInitialRotation;
+	public float rotateSpeedMultiplier;
 
 	void Start()
 	{
@@ -21,12 +19,13 @@ public class GyroCamera : MonoBehaviour
 
 	void Update()
 	{
-		this.transform.Rotate (-Input.gyro.rotationRateUnbiased.x, 0, 0);
-		player.transform.Rotate (0, -Input.gyro.rotationRateUnbiased.y, 0);
+		this.transform.Rotate (-Input.gyro.rotationRateUnbiased.x * rotateSpeedMultiplier, 0, 0);
+		player.transform.Rotate (0, -Input.gyro.rotationRateUnbiased.y * rotateSpeedMultiplier, 0);
 	}
 
 	public void ResetOrientation()
 	{
 		transform.eulerAngles = Vector3.zero;
+		player.transform.eulerAngles = Vector3.zero;
 	}
 }
