@@ -25,7 +25,6 @@ public class GyroCamera : MonoBehaviour
 
 	public void ResetOrientation()
 	{
-		transform.eulerAngles = Vector3.zero;
-		player.transform.eulerAngles = Vector3.zero;
+		transform.rotation = new Quaternion (0, 0, 0, 0);
 	}
 }
