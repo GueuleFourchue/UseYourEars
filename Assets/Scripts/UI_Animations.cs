@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LightMove : MonoBehaviour {
+public class UI_Animations : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

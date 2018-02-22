@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
-public class PlayerController : MonoBehaviour {
-
+public class ButtonsMove : MonoBehaviour {
 	public Camera cam;
 
 	[Header("Walk")]
@@ -17,45 +17,36 @@ public class PlayerController : MonoBehaviour {
 	public AudioSource audioSource;
 	public AudioClip footSteps;
 
-
-	float screenWidth;
-	float screenHeight;
+	float volume;
 
 	bool isWalking;
+	bool isWalkingForward;
 
 	void Start()
 	{
-		screenWidth = Screen.width;
-		screenHeight = Screen.height;
-
 		transform.eulerAngles = Vector3.zero;
+		volume = audioSource.volume;
 	}
 
-    private void Update()
-    {
-		
-		if (Input.GetMouseButton(0) && Input.touchCount == 1) 
+	private void Update()
+	{
+		if (isWalking) 
 		{
-			TapMovement (Input.mousePosition.x);
-		}
-		else if (Input.GetMouseButtonUp(0) && Input.touchCount == 1) 
-		{
-			if (isWalking) 
-			{
-				isWalking = false;
-				PlayAnim ("IdleTrigger");
-				Sound (footSteps, false);
-			}
+			if (isWalkingForward) 
+				transform.position += transform.forward * Time.deltaTime * walkForwardSpeed;
+			else 
+				transform.position -= transform.forward * Time.deltaTime * walkBackSpeed;
 		}
 
 		if (Input.touchCount > 1) 
 		{
 			cam.GetComponent<GyroCamera> ().ResetOrientation ();
 		}
-			
-    }
+
+	}
 		
-	void TapMovement (float tapXPosition)
+
+	public void Move(bool forward)
 	{
 		if (!isWalking) 
 		{
@@ -63,16 +54,20 @@ public class PlayerController : MonoBehaviour {
 			PlayAnim ("WalkTrigger");
 			Sound (footSteps, true);
 		}
-
-		if (tapXPosition > screenWidth / 2) 
-		{
-			transform.position += transform.forward * Time.deltaTime * walkForwardSpeed;
-		}
+		if (forward == true)
+			isWalkingForward = true;
 		else
-		{
-			transform.position -= transform.forward * Time.deltaTime * walkBackSpeed;
-		}
+			isWalkingForward = false;
+	}
 
+	public void StopMoving()
+	{
+		if (isWalking) 
+		{
+			isWalking = false;
+			PlayAnim ("IdleTrigger");
+			Sound (footSteps, false);
+		}
 	}
 
 
@@ -85,10 +80,14 @@ public class PlayerController : MonoBehaviour {
 	{
 		if (play) 
 		{
+			audioSource.volume = volume;
 			audioSource.clip = clip;
 			audioSource.Play ();
 		}
-		if (!play)
+		if (!play) 
+		{
 			audioSource.Stop ();
+		}
+			
 	}
 }

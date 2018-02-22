@@ -244,8 +244,8 @@ PlayerSettings:
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: 
-  AndroidKeyaliasName: 
+  AndroidKeystoreName: C:/Users/lbour/Desktop/GAMES_WORK/Use Your Ears/user.keystore
+  AndroidKeyaliasName: newkey
   AndroidTVCompatibility: 1
   AndroidIsGame: 1
   AndroidEnableTango: 0
